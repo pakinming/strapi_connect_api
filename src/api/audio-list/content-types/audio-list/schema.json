@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "audio_lists",
+  "info": {
+    "singularName": "audio-list",
+    "pluralName": "audio-lists",
+    "displayName": "audio_list"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "url": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "pois": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::poi.poi"
+    },
+    "pois2": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::poi.poi",
+      "inversedBy": "audio_lists2"
+    }
+  }
+}

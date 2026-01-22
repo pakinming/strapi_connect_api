@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "Article"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "descrition": {
+      "type": "string"
+    },
+    "tags_names": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tags-name.tags-name"
+    },
+    "direction": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::geo-location.geo-location"
+    },
+    "item_information": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::information-details00.information-details00"
+    },
+    "audio": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "files",
+        "audios"
+      ]
+    },
+    "stories_deatail": {
+      "type": "richtext"
+    },
+    "tags_names_demos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tags-name.tags-name"
+    },
+    "relation_tests": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::relation-test.relation-test"
+    }
+  }
+}

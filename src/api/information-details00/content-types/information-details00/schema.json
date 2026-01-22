@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "information_details00s",
+  "info": {
+    "singularName": "information-details00",
+    "pluralName": "information-details00s",
+    "displayName": "ItemInformation"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "estimate_time": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "tel": {
+      "type": "string"
+    },
+    "time_open": {
+      "type": "string"
+    }
+  }
+}

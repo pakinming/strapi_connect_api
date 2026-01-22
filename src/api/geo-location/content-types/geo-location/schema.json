@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "geo_locations",
+  "info": {
+    "singularName": "geo-location",
+    "pluralName": "geo-locations",
+    "displayName": "direction"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "poi_name": {
+      "type": "string"
+    },
+    "lat": {
+      "type": "decimal",
+      "required": true
+    },
+    "lng": {
+      "type": "decimal",
+      "required": true
+    }
+  }
+}

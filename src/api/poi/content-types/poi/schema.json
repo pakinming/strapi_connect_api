@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pois",
+  "info": {
+    "singularName": "poi",
+    "pluralName": "pois",
+    "displayName": "poi"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "poi_name": {
+      "type": "string"
+    },
+    "lat": {
+      "type": "decimal"
+    },
+    "lng": {
+      "type": "decimal"
+    },
+    "audio_lists": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::audio-list.audio-list"
+    },
+    "audio_lists2": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::audio-list.audio-list",
+      "mappedBy": "pois2"
+    }
+  }
+}

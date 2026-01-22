@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "route_pois",
+  "info": {
+    "singularName": "route-poi",
+    "pluralName": "route-pois",
+    "displayName": "route_poi"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "pois": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::poi.poi"
+    },
+    "audio_lists": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::audio-list.audio-list"
+    }
+  }
+}
