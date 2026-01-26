@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "env_configs",
+  "info": {
+    "singularName": "env-config",
+    "pluralName": "env-configs",
+    "displayName": "env_config"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "env_name": {
+      "type": "string"
+    },
+    "config": {
+      "type": "json"
+    }
+  }
+}

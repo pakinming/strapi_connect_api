@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  strapi-uat:
+    container_name: strapi-uat
+    build: 
+      context: ../..
+      dockerfile: Dockerfile
+    image: strapi-prod:latest
+    restart: always
+    env_file: .env
+    environment:
+      NODE_ENV: production
+    volumes:
+      - strapi-uploads:/opt/app/public/uploads
+    ports:
+      - '1338:1337'
+    networks:
+      - strapi-net
+
+volumes:
+  strapi-uploads:
+
+networks:
+  strapi-net:
+    driver: bridge

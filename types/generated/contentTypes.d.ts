@@ -440,12 +440,22 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
     audio: Schema.Attribute.Media<'files' | 'audios', true>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    descrition: Schema.Attribute.String;
+    descrition: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     direction: Schema.Attribute.Relation<
       'oneToOne',
       'api::geo-location.geo-location'
@@ -454,18 +464,22 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
       'oneToOne',
       'api::information-details00.information-details00'
     >;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::article.article'
-    > &
-      Schema.Attribute.Private;
+    >;
     publishedAt: Schema.Attribute.DateTime;
     relation_tests: Schema.Attribute.Relation<
       'oneToMany',
       'api::relation-test.relation-test'
     >;
-    stories_deatail: Schema.Attribute.RichText;
+    stories_deatail: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     tags_names: Schema.Attribute.Relation<
       'oneToMany',
       'api::tags-name.tags-name'
@@ -476,7 +490,12 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     >;
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
-      Schema.Attribute.Unique;
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -511,6 +530,35 @@ export interface ApiAudioListAudioList extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     url: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+  };
+}
+
+export interface ApiEnvConfigEnvConfig extends Struct.CollectionTypeSchema {
+  collectionName: 'env_configs';
+  info: {
+    displayName: 'env_config';
+    pluralName: 'env-configs';
+    singularName: 'env-config';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    config: Schema.Attribute.JSON;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    env_name: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::env-config.env-config'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -569,6 +617,40 @@ export interface ApiGeoLocationGeoLocation extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiI18NI18N extends Struct.CollectionTypeSchema {
+  collectionName: 'i18ns';
+  info: {
+    displayName: 'i18n';
+    pluralName: 'i18ns';
+    singularName: 'i18n';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::i18n.i18n'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    zone: Schema.Attribute.DynamicZone<['d.name', 'bkk.poi']> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
   };
 }
 
@@ -1242,8 +1324,10 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::article.article': ApiArticleArticle;
       'api::audio-list.audio-list': ApiAudioListAudioList;
+      'api::env-config.env-config': ApiEnvConfigEnvConfig;
       'api::footer.footer': ApiFooterFooter;
       'api::geo-location.geo-location': ApiGeoLocationGeoLocation;
+      'api::i18n.i18n': ApiI18NI18N;
       'api::information-details00.information-details00': ApiInformationDetails00InformationDetails00;
       'api::poi.poi': ApiPoiPoi;
       'api::relation-test.relation-test': ApiRelationTestRelationTest;

@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  strapi-prod:
+    container_name: strapi-prod
+    build: 
+      context: ../..
+      dockerfile: Dockerfile
+    image: strapi-prod:latest
+    restart: always
+    env_file: .env
+    environment:
+      NODE_ENV: production
+    volumes:
+      - strapi-uploads:/opt/app/public/uploads
+    ports:
+      - '1337:1337'
+    networks:
+      - strapi-net
+
+volumes:
+  strapi-uploads:
+
+networks:
+  strapi-net:
+    driver: bridge
