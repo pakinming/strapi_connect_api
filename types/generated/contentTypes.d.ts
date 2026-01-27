@@ -460,6 +460,12 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
       'oneToOne',
       'api::geo-location.geo-location'
     >;
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     item_information: Schema.Attribute.Relation<
       'oneToOne',
       'api::information-details00.information-details00'
