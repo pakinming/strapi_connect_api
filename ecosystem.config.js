@@ -4,7 +4,7 @@ module.exports = {
       name: 'strapi-connect-api',
       script: 'node_modules/@strapi/strapi/bin/strapi.js',
       args: 'start',
-      instances: 'max',
+      instances: '2',
       exec_mode: 'cluster',
       env: {
         NODE_ENV: 'production',
