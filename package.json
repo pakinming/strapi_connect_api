@@ -15,7 +15,8 @@
     "upgrade:dry": "npx @strapi/upgrade latest --dry"
   },
   "dependencies": {
-    "@strapi-community/strapi-provider-upload-google-cloud-storage": "^5.0.5",
+    "@strapi-community/strapi-provider-upload-google-cloud-storage": "https://github.com/ustwo/strapi-provider-upload-google-cloud-storage#dist",
+
     "@strapi/plugin-cloud": "5.33.3",
     "@strapi/plugin-users-permissions": "5.33.3",
     "@strapi/strapi": "5.33.3",
@@ -23,7 +24,8 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
-    "styled-components": "^6.0.0"
+    "styled-components": "^6.0.0",
+    "typesense": "^2.1.0"
   },
   "devDependencies": {
     "@types/node": "^20",

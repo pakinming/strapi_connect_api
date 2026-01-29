@@ -21,13 +21,16 @@ services:
       API_TOKEN_SALT: ${API_TOKEN_SALT}
       TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT}
       NODE_ENV: ${NODE_ENV:-development}
+      GCS_SERVICE_ACCOUNT_KEY_PATH: ${GCS_SERVICE_ACCOUNT_KEY_PATH}
+
+    
     volumes:
       - ./config:/opt/app/config
       - ./src:/opt/app/src
       - ./package.json:/opt/app/package.json
       - ./package-lock.json:/opt/app/package-lock.json
-      - ./.tmp:/opt/app/.tmp
       - ./public/uploads:/opt/app/public/uploads
+      - ./tathata-460206-c3848c9360ef.json:/opt/app/GCServiceAccountKey.json:ro
     ports:
       - '1337:1337'
     

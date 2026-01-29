@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  typesense:
+    image: typesense/typesense:30.0
+    container_name: typesense-test
+    restart: on-failure
+    ports:
+      - "8108:8108"
+    environment:
+      - TYPESENSE_DATA_DIR=/data
+      - TYPESENSE_API_KEY=xyz
+      - TYPESENSE_ENABLE_CORS=true
+    volumes:
+      - ./typesense-data:/data
+
+volumes:
+  typesense-data:

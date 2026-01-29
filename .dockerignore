@@ -13,3 +13,9 @@ docker-compose.yml
 .DS_Store
 **/.DS_Store
 .idea
+
+# Secrets
+*.json
+!package.json
+!package-lock.json
+!tsconfig.json
