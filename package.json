@@ -15,8 +15,8 @@
     "upgrade:dry": "npx @strapi/upgrade latest --dry"
   },
   "dependencies": {
+    "@premiate/strapi-plugin-maplibre-field": "^1.1.2",
     "@strapi-community/strapi-provider-upload-google-cloud-storage": "https://github.com/ustwo/strapi-provider-upload-google-cloud-storage#dist",
-
     "@strapi/plugin-cloud": "5.33.3",
     "@strapi/plugin-users-permissions": "5.33.3",
     "@strapi/strapi": "5.33.3",
@@ -24,6 +24,10 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
+    "strapi-date-range-picker-5": "^1.0.11",
+    "strapi-geodata": "^0.1.2",
+    "strapi-location-picker": "^0.0.2",
+    "strapi-plugin-address-selection": "^1.0.1",
     "styled-components": "^6.0.0",
     "typesense": "^2.1.0"
   },

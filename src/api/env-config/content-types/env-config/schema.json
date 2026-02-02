@@ -16,6 +16,9 @@
     },
     "config": {
       "type": "json"
+    },
+    "rich_text": {
+      "type": "blocks"
     }
   }
 }

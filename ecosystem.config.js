@@ -4,10 +4,10 @@ module.exports = {
       name: 'strapi-connect-api',
       script: 'node_modules/@strapi/strapi/bin/strapi.js',
       args: 'start',
-      instances: '2',
+      instances: process.env.STRAPI_INSTANCES || '2',
       exec_mode: 'cluster',
       env: {
-        NODE_ENV: 'production',
+        NODE_ENV: process.env.NODE_ENV || 'development',
       },
     },
   ],

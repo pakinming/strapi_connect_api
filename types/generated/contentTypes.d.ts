@@ -446,6 +446,13 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
+    address: Schema.Attribute.String &
+      Schema.Attribute.CustomField<'plugin::address-selection.address'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     audio: Schema.Attribute.Media<'files' | 'audios', true>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -460,6 +467,18 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
       'oneToOne',
       'api::geo-location.geo-location'
     >;
+    geo_data: Schema.Attribute.JSON &
+      Schema.Attribute.CustomField<
+        'plugin::geodata.geojson',
+        {
+          info: true;
+        }
+      > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -470,11 +489,33 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
       'oneToOne',
       'api::information-details00.information-details00'
     >;
+    list: Schema.Attribute.Enumeration<['bangna', 'bangbo', 'bangpi']> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::article.article'
     >;
+    map: Schema.Attribute.JSON &
+      Schema.Attribute.CustomField<
+        'plugin::maplibre-field.map',
+        {
+          pluginOptions: {
+            i18n: {
+              localized: false;
+            };
+          };
+        }
+      > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     publishedAt: Schema.Attribute.DateTime;
     relation_tests: Schema.Attribute.Relation<
       'oneToMany',
@@ -486,14 +527,6 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    tags_names: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::tags-name.tags-name'
-    >;
-    tags_names_demos: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::tags-name.tags-name'
-    >;
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique &
@@ -562,6 +595,7 @@ export interface ApiEnvConfigEnvConfig extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    rich_text: Schema.Attribute.Blocks;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -692,6 +726,111 @@ export interface ApiInformationDetails00InformationDetails00
   };
 }
 
+export interface ApiPoiAddressPoiAddress extends Struct.CollectionTypeSchema {
+  collectionName: 'poi_addresses';
+  info: {
+    displayName: 'poi_address';
+    pluralName: 'poi-addresses';
+    singularName: 'poi-address';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    address: Schema.Attribute.String &
+      Schema.Attribute.CustomField<'plugin::address-selection.address'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    address_line: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    country: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Date: Schema.Attribute.Date &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    date_time: Schema.Attribute.DateTime &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    demo_date: Schema.Attribute.JSON &
+      Schema.Attribute.CustomField<'plugin::strapi-date-range-picker-5.date-range-picker'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    district: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    geo_location: Schema.Attribute.JSON &
+      Schema.Attribute.CustomField<
+        'plugin::geodata.geojson',
+        {
+          info: true;
+        }
+      > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::poi-address.poi-address'
+    >;
+    postal_code: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    province: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    time: Schema.Attribute.Time &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPoiPoi extends Struct.CollectionTypeSchema {
   collectionName: 'pois';
   info: {
@@ -784,34 +923,6 @@ export interface ApiRoutePoiRoutePoi extends Struct.CollectionTypeSchema {
     pois: Schema.Attribute.Relation<'oneToMany', 'api::poi.poi'>;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiTagsNameTagsName extends Struct.CollectionTypeSchema {
-  collectionName: 'tags_names';
-  info: {
-    displayName: 'TagsName';
-    pluralName: 'tags-names';
-    singularName: 'tags-name';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::tags-name.tags-name'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String & Schema.Attribute.Required;
-    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1335,10 +1446,10 @@ declare module '@strapi/strapi' {
       'api::geo-location.geo-location': ApiGeoLocationGeoLocation;
       'api::i18n.i18n': ApiI18NI18N;
       'api::information-details00.information-details00': ApiInformationDetails00InformationDetails00;
+      'api::poi-address.poi-address': ApiPoiAddressPoiAddress;
       'api::poi.poi': ApiPoiPoi;
       'api::relation-test.relation-test': ApiRelationTestRelationTest;
       'api::route-poi.route-poi': ApiRoutePoiRoutePoi;
-      'api::tags-name.tags-name': ApiTagsNameTagsName;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
