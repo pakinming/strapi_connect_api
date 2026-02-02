@@ -430,117 +430,6 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
-  collectionName: 'articles';
-  info: {
-    displayName: 'Article';
-    pluralName: 'articles';
-    singularName: 'article';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    address: Schema.Attribute.String &
-      Schema.Attribute.CustomField<'plugin::address-selection.address'> &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    audio: Schema.Attribute.Media<'files' | 'audios', true>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    descrition: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    direction: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::geo-location.geo-location'
-    >;
-    geo_data: Schema.Attribute.JSON &
-      Schema.Attribute.CustomField<
-        'plugin::geodata.geojson',
-        {
-          info: true;
-        }
-      > &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    item_information: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::information-details00.information-details00'
-    >;
-    list: Schema.Attribute.Enumeration<['bangna', 'bangbo', 'bangpi']> &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::article.article'
-    >;
-    map: Schema.Attribute.JSON &
-      Schema.Attribute.CustomField<
-        'plugin::maplibre-field.map',
-        {
-          pluginOptions: {
-            i18n: {
-              localized: false;
-            };
-          };
-        }
-      > &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    publishedAt: Schema.Attribute.DateTime;
-    relation_tests: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::relation-test.relation-test'
-    >;
-    stories_deatail: Schema.Attribute.RichText &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    title: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiAudioListAudioList extends Struct.CollectionTypeSchema {
   collectionName: 'audio_lists';
   info: {
@@ -1439,7 +1328,6 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::article.article': ApiArticleArticle;
       'api::audio-list.audio-list': ApiAudioListAudioList;
       'api::env-config.env-config': ApiEnvConfigEnvConfig;
       'api::footer.footer': ApiFooterFooter;
