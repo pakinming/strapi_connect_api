@@ -1,0 +1,55 @@
+{
+  "collectionName": "components_schedule_operating_hours",
+  "info": {
+    "displayName": "operating_hour",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "open_time": {
+      "type": "time",
+      "conditions": {
+        "visible": {
+          "!=": [
+            {
+              "var": "is_closed"
+            },
+            true
+          ]
+        }
+      }
+    },
+    "close_time": {
+      "type": "time",
+      "conditions": {
+        "visible": {
+          "!=": [
+            {
+              "var": "is_closed"
+            },
+            true
+          ]
+        }
+      }
+    },
+    "is_open_24h": {
+      "type": "boolean",
+      "conditions": {
+        "visible": {
+          "!=": [
+            {
+              "var": "is_closed"
+            },
+            true
+          ]
+        }
+      },
+      "default": false
+    },
+    "is_closed": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "config": {}
+}

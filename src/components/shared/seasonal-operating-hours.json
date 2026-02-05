@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_shared_seasonal_operating_hours",
+  "info": {
+    "displayName": "Seasonal Operating Hours",
+    "description": "Override operating hours for a date range"
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "start_date": {
+      "type": "date",
+      "required": true
+    },
+    "end_date": {
+      "type": "date",
+      "required": true
+    },
+    "hours": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.operating-hour",
+      "required": true
+    }
+  }
+}

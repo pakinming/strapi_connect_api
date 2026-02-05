@@ -452,12 +452,93 @@ export interface ApiAudioListAudioList extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     pois: Schema.Attribute.Relation<'oneToMany', 'api::poi.poi'>;
-    pois2: Schema.Attribute.Relation<'manyToMany', 'api::poi.poi'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     url: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+  };
+}
+
+export interface ApiCategoryChildCategoryChild
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'category_children';
+  info: {
+    displayName: 'category_child';
+    pluralName: 'category-children';
+    singularName: 'category-child';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::category-child.category-child'
+    >;
+    name: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
+  collectionName: 'categories';
+  info: {
+    displayName: 'category';
+    pluralName: 'categories';
+    singularName: 'category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    category_children: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::category-child.category-child'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::category.category'
+    >;
+    name: Schema.Attribute.String;
+    pois: Schema.Attribute.Relation<'oneToMany', 'api::poi.poi'>;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'name'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -574,44 +655,12 @@ export interface ApiI18NI18N extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    zone: Schema.Attribute.DynamicZone<['d.name', 'bkk.poi']> &
+    zone: Schema.Attribute.DynamicZone<[]> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-  };
-}
-
-export interface ApiInformationDetails00InformationDetails00
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'information_details00s';
-  info: {
-    displayName: 'ItemInformation';
-    pluralName: 'information-details00s';
-    singularName: 'information-details00';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    estimate_time: Schema.Attribute.String;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::information-details00.information-details00'
-    > &
-      Schema.Attribute.Private;
-    location: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    tel: Schema.Attribute.String;
-    time_open: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
   };
 }
 
@@ -735,9 +784,13 @@ export interface ApiPoiPoi extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::audio-list.audio-list'
     >;
-    audio_lists2: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::audio-list.audio-list'
+    category_children: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::category-child.category-child'
+    >;
+    category_poi: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::category.category'
     >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -815,6 +868,85 @@ export interface ApiRoutePoiRoutePoi extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiStoreHourStoreHour extends Struct.CollectionTypeSchema {
+  collectionName: 'store_hours';
+  info: {
+    displayName: 'store_hour';
+    pluralName: 'store-hours';
+    singularName: 'store-hour';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    days: Schema.Attribute.Component<'schedule.operating-hour', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    friday: Schema.Attribute.Component<'schedule.operating-hour', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::store-hour.store-hour'
+    >;
+    monday: Schema.Attribute.Component<'schedule.operating-hour', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    saturday: Schema.Attribute.Component<'schedule.operating-hour', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    sunday: Schema.Attribute.Component<'schedule.operating-hour', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    thursday: Schema.Attribute.Component<'schedule.operating-hour', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    tuesday: Schema.Attribute.Component<'schedule.operating-hour', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    wednesday: Schema.Attribute.Component<'schedule.operating-hour', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
   };
 }
 
@@ -1329,15 +1461,17 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::audio-list.audio-list': ApiAudioListAudioList;
+      'api::category-child.category-child': ApiCategoryChildCategoryChild;
+      'api::category.category': ApiCategoryCategory;
       'api::env-config.env-config': ApiEnvConfigEnvConfig;
       'api::footer.footer': ApiFooterFooter;
       'api::geo-location.geo-location': ApiGeoLocationGeoLocation;
       'api::i18n.i18n': ApiI18NI18N;
-      'api::information-details00.information-details00': ApiInformationDetails00InformationDetails00;
       'api::poi-address.poi-address': ApiPoiAddressPoiAddress;
       'api::poi.poi': ApiPoiPoi;
       'api::relation-test.relation-test': ApiRelationTestRelationTest;
       'api::route-poi.route-poi': ApiRoutePoiRoutePoi;
+      'api::store-hour.store-hour': ApiStoreHourStoreHour;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

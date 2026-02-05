@@ -17,9 +17,9 @@
   "dependencies": {
     "@premiate/strapi-plugin-maplibre-field": "^1.1.2",
     "@strapi-community/strapi-provider-upload-google-cloud-storage": "https://github.com/ustwo/strapi-provider-upload-google-cloud-storage#dist",
-    "@strapi/plugin-cloud": "5.33.3",
-    "@strapi/plugin-users-permissions": "5.33.3",
-    "@strapi/strapi": "5.33.3",
+    "@strapi/plugin-cloud": "5.34.0",
+    "@strapi/plugin-users-permissions": "5.34",
+    "@strapi/strapi": "5.34.0",
     "pg": "8.8.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -28,6 +28,7 @@
     "strapi-geodata": "^0.1.2",
     "strapi-location-picker": "^0.0.2",
     "strapi-plugin-address-selection": "^1.0.1",
+
     "styled-components": "^6.0.0",
     "typesense": "^2.1.0"
   },

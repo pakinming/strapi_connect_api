@@ -28,12 +28,6 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::poi.poi"
-    },
-    "pois2": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::poi.poi",
-      "inversedBy": "audio_lists2"
     }
   }
 }

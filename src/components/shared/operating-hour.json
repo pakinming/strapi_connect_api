@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_shared_operating_hours",
+  "info": {
+    "displayName": "Operating Hour",
+    "description": "Opening hours for a specific day"
+  },
+  "attributes": {
+    "day_of_week": {
+      "type": "enumeration",
+      "enum": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"],
+      "required": true
+    },
+    "is_open": {
+      "type": "boolean",
+      "default": false
+    },
+    "open_time": {
+      "type": "time"
+    },
+    "close_time": {
+      "type": "time"
+    },
+    "open_24h": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

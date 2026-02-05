@@ -1,28 +1,58 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
-export interface BkkPoi extends Struct.ComponentSchema {
-  collectionName: 'components_bkk_pois';
+export interface ScheduleOperatingHour extends Struct.ComponentSchema {
+  collectionName: 'components_schedule_operating_hours';
   info: {
-    displayName: 'poi';
-    icon: 'database';
+    displayName: 'operating_hour';
+    icon: 'apps';
   };
-  attributes: {};
+  attributes: {
+    close_time: Schema.Attribute.Time;
+    is_closed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    is_open_24h: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    open_time: Schema.Attribute.Time;
+  };
 }
 
-export interface DName extends Struct.ComponentSchema {
-  collectionName: 'components_d_names';
+export interface SharedOperatingHour extends Struct.ComponentSchema {
+  collectionName: 'components_shared_operating_hours';
   info: {
-    displayName: 'name';
-    icon: 'alien';
+    description: 'Opening hours for a specific day';
+    displayName: 'Operating Hour';
   };
-  attributes: {};
+  attributes: {
+    close_time: Schema.Attribute.Time;
+    day_of_week: Schema.Attribute.Enumeration<
+      ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+    > &
+      Schema.Attribute.Required;
+    is_open: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    open_24h: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    open_time: Schema.Attribute.Time;
+  };
+}
+
+export interface SharedSeasonalOperatingHours extends Struct.ComponentSchema {
+  collectionName: 'components_shared_seasonal_operating_hours';
+  info: {
+    description: 'Override operating hours for a date range';
+    displayName: 'Seasonal Operating Hours';
+  };
+  attributes: {
+    end_date: Schema.Attribute.Date & Schema.Attribute.Required;
+    hours: Schema.Attribute.Component<'shared.operating-hour', true> &
+      Schema.Attribute.Required;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    start_date: Schema.Attribute.Date & Schema.Attribute.Required;
+  };
 }
 
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
-      'bkk.poi': BkkPoi;
-      'd.name': DName;
+      'schedule.operating-hour': ScheduleOperatingHour;
+      'shared.operating-hour': SharedOperatingHour;
+      'shared.seasonal-operating-hours': SharedSeasonalOperatingHours;
     }
   }
 }

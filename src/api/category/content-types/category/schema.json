@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "categories",
+  "info": {
+    "singularName": "category",
+    "pluralName": "categories",
+    "displayName": "category"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "targetField": "name"
+    },
+    "category_children": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category-child.category-child",
+      "mappedBy": "category"
+    },
+    "pois": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::poi.poi",
+      "mappedBy": "category_poi"
+    }
+  }
+}

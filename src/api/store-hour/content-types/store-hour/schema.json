@@ -1,0 +1,99 @@
+{
+  "kind": "collectionType",
+  "collectionName": "store_hours",
+  "info": {
+    "singularName": "store-hour",
+    "pluralName": "store-hours",
+    "displayName": "store_hour"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "monday": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "schedule.operating-hour",
+      "repeatable": false
+    },
+    "tuesday": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "schedule.operating-hour",
+      "repeatable": false
+    },
+    "wednesday": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "schedule.operating-hour",
+      "repeatable": false
+    },
+    "thursday": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "schedule.operating-hour",
+      "repeatable": false
+    },
+    "friday": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "schedule.operating-hour",
+      "repeatable": false
+    },
+    "saturday": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "schedule.operating-hour",
+      "repeatable": false
+    },
+    "sunday": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "schedule.operating-hour",
+      "repeatable": false
+    },
+    "days": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "schedule.operating-hour",
+      "repeatable": true
+    }
+  }
+}

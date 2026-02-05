@@ -22,10 +22,7 @@
           "localized": true
         }
       },
-      "components": [
-        "d.name",
-        "bkk.poi"
-      ]
+      "components": []
     }
   }
 }

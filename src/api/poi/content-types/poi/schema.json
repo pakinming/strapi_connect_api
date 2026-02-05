@@ -25,11 +25,16 @@
       "relation": "oneToMany",
       "target": "api::audio-list.audio-list"
     },
-    "audio_lists2": {
+    "category_poi": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::audio-list.audio-list",
-      "mappedBy": "pois2"
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "pois"
+    },
+    "category_children": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category-child.category-child"
     }
   }
 }

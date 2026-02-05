@@ -1,0 +1,7 @@
+/**
+ * category-child router
+ */
+
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreRouter('api::category-child.category-child');
