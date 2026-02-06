@@ -492,6 +492,7 @@ export interface ApiCategoryChildCategoryChild
           localized: true;
         };
       }>;
+    pois: Schema.Attribute.Relation<'manyToMany', 'api::poi.poi'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -779,13 +780,25 @@ export interface ApiPoiPoi extends Struct.CollectionTypeSchema {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
     audio_lists: Schema.Attribute.Relation<
       'oneToMany',
       'api::audio-list.audio-list'
     >;
+    cate_custom: Schema.Attribute.JSON &
+      Schema.Attribute.CustomField<'plugin::poc-custom-field.my-category-field'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     category_children: Schema.Attribute.Relation<
-      'oneToMany',
+      'manyToMany',
       'api::category-child.category-child'
     >;
     category_poi: Schema.Attribute.Relation<
@@ -795,12 +808,26 @@ export interface ApiPoiPoi extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    lat: Schema.Attribute.Decimal;
-    lng: Schema.Attribute.Decimal;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::poi.poi'> &
-      Schema.Attribute.Private;
-    poi_name: Schema.Attribute.String;
+    lat: Schema.Attribute.Decimal &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    lng: Schema.Attribute.Decimal &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::poi.poi'>;
+    poi_name: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

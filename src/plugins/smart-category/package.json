@@ -1,0 +1,15 @@
+{
+  "name": "smart-category",
+  "version": "0.0.1",
+  "description": "Smart Category Custom Field Plugin",
+  "strapi": {
+    "kind": "plugin",
+    "name": "smart-category",
+    "displayName": "Smart Category",
+    "description": "Custom field for filtering category children"
+  },
+  "main": "server/src/index.ts",
+  "module": "admin/src/index.tsx",
+  "dependencies": {},
+  "devDependencies": {}
+}

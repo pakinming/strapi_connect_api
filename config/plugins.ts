@@ -49,6 +49,10 @@ module.exports = ({ env }) => {
         poiSources: [],
       },
     },
+    'poc-custom-field': {
+      enabled: true,
+      resolve: './src/plugins/my-strapi-plugin'
+    },
   };
 };
 

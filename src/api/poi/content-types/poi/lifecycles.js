@@ -4,15 +4,47 @@ module.exports = {
   async beforeCreate(event) {
     const { data } = event.params;
     console.log('############ [Lifecycle] beforeCreate', data);
+    
+    // Sync smart_relations to actual relations
+    syncSmartRelations(data);
+    
     await validateCategoryChildren(event, 'create');
   },
 
   async beforeUpdate(event) {
     const { data } = event.params;
     console.log('############ [Lifecycle] beforeUpdate', data);
+    
+    // Sync smart_relations to actual relations
+    syncSmartRelations(data);
+    
     await validateCategoryChildren(event, 'update');
   },
 };
+
+function syncSmartRelations(data) {
+  if (data.smart_relations) {
+    console.log('[Lifecycle] Syncing Smart Relations:', data.smart_relations);
+    try {
+      const smartData = (typeof data.smart_relations === 'string') 
+        ? JSON.parse(data.smart_relations) 
+        : data.smart_relations;
+
+      // Only update if values are present strings/arrays/null, not undefined
+      if (smartData.categoryId !== undefined) {
+         // If "null", it means clear. If ID, it means set.
+         data.category_poi = smartData.categoryId;
+      }
+      
+      if (smartData.childIds !== undefined) {
+         // Assuming array of IDs means "Set" behavior
+         data.category_children = smartData.childIds;
+      }
+    } catch (e) {
+      console.error('[Lifecycle] Error syncing smart relations:', e);
+    }
+  }
+}
 
 async function validateCategoryChildren(event, action) {
   console.log('############ [Lifecycle] Validating Category Children for action:', action);
