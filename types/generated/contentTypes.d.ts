@@ -492,7 +492,6 @@ export interface ApiCategoryChildCategoryChild
           localized: true;
         };
       }>;
-    pois: Schema.Attribute.Relation<'manyToMany', 'api::poi.poi'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -529,7 +528,6 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
       'api::category.category'
     >;
     name: Schema.Attribute.String;
-    pois: Schema.Attribute.Relation<'oneToMany', 'api::poi.poi'>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'name'> &
       Schema.Attribute.SetPluginOptions<{
@@ -790,21 +788,13 @@ export interface ApiPoiPoi extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::audio-list.audio-list'
     >;
-    cate_custom: Schema.Attribute.JSON &
+    categories: Schema.Attribute.JSON &
       Schema.Attribute.CustomField<'plugin::poc-custom-field.my-category-field'> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
-    category_children: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::category-child.category-child'
-    >;
-    category_poi: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::category.category'
-    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -825,7 +815,7 @@ export interface ApiPoiPoi extends Struct.CollectionTypeSchema {
     poi_name: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     publishedAt: Schema.Attribute.DateTime;

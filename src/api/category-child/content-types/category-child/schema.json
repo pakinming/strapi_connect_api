@@ -28,12 +28,6 @@
       "relation": "manyToOne",
       "target": "api::category.category",
       "inversedBy": "category_children"
-    },
-    "pois": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::poi.poi",
-      "mappedBy": "category_children"
     }
   }
 }

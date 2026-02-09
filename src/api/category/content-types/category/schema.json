@@ -32,12 +32,6 @@
       "relation": "oneToMany",
       "target": "api::category-child.category-child",
       "mappedBy": "category"
-    },
-    "pois": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::poi.poi",
-      "mappedBy": "category_poi"
     }
   }
 }
