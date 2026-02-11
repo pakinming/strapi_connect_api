@@ -24,6 +24,14 @@ const CategoryInput = ({ value, onChange, name, attribute, disabled, error, requ
     const [selectedCategory, setSelectedCategory] = useState(safeValue.categoryId);
     const [selectedChildren, setSelectedChildren] = useState(safeValue.childIds || []);
 
+    // Sync state with value prop changes (e.g. when switching locales)
+    useEffect(() => {
+        const newVal = value ? (typeof value === 'string' ? JSON.parse(value) : value) : { categoryId: null, childIds: [] };
+        setSelectedCategory(newVal.categoryId);
+        setSelectedChildren(newVal.childIds || []);
+    }, [value]);
+
+
     // Fetch Categories on mount
     useEffect(() => {
         const fetchCategories = async () => {
@@ -62,6 +70,7 @@ const CategoryInput = ({ value, onChange, name, attribute, disabled, error, requ
             }
         }
         fetchChildren();
+        console.log('Selected Category:', selectedCategory);
     }, [selectedCategory]);
 
     const handleCategoryChange = (val) => {

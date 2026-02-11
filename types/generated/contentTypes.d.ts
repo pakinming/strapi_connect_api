@@ -663,12 +663,12 @@ export interface ApiI18NI18N extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiPoiAddressPoiAddress extends Struct.CollectionTypeSchema {
-  collectionName: 'poi_addresses';
+export interface ApiMultiLangMultiLang extends Struct.CollectionTypeSchema {
+  collectionName: 'multi_langs';
   info: {
-    displayName: 'poi_address';
-    pluralName: 'poi-addresses';
-    singularName: 'poi-address';
+    displayName: 'multi_lang';
+    pluralName: 'multi-langs';
+    singularName: 'multi-lang';
   };
   options: {
     draftAndPublish: true;
@@ -679,60 +679,10 @@ export interface ApiPoiAddressPoiAddress extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
-    address: Schema.Attribute.String &
-      Schema.Attribute.CustomField<'plugin::address-selection.address'> &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    address_line: Schema.Attribute.Text &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    country: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Date: Schema.Attribute.Date &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    date_time: Schema.Attribute.DateTime &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    demo_date: Schema.Attribute.JSON &
-      Schema.Attribute.CustomField<'plugin::strapi-date-range-picker-5.date-range-picker'> &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    district: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    geo_location: Schema.Attribute.JSON &
-      Schema.Attribute.CustomField<
-        'plugin::geodata.geojson',
-        {
-          info: true;
-        }
-      > &
+    data: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -741,27 +691,52 @@ export interface ApiPoiAddressPoiAddress extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::poi-address.poi-address'
+      'api::multi-lang.multi-lang'
     >;
-    postal_code: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    province: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     publishedAt: Schema.Attribute.DateTime;
-    time: Schema.Attribute.Time &
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPocLocalePocLocale extends Struct.CollectionTypeSchema {
+  collectionName: 'poc_locales';
+  info: {
+    displayName: 'poc_locale';
+    pluralName: 'poc-locales';
+    singularName: 'poc-locale';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    data: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    lang: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::poc-locale.poc-locale'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -825,11 +800,51 @@ export interface ApiPoiPoi extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiRelationMultiLangRelationMultiLang
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'relation_multi_langs';
+  info: {
+    displayName: 'relation_multi_lang';
+    pluralName: 'relation-multi-langs';
+    singularName: 'relation-multi-lang';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::relation-multi-lang.relation-multi-lang'
+    >;
+    multi_langs: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::multi-lang.multi-lang'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    single_langs: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::single-lang.single-lang'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiRelationTestRelationTest
   extends Struct.CollectionTypeSchema {
   collectionName: 'relation_tests';
   info: {
-    displayName: 'relation_test';
+    displayName: 'relation_single_lang';
     pluralName: 'relation-tests';
     singularName: 'relation-test';
   };
@@ -847,7 +862,15 @@ export interface ApiRelationTestRelationTest
       'api::relation-test.relation-test'
     > &
       Schema.Attribute.Private;
+    multi_langs: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::multi-lang.multi-lang'
+    >;
     publishedAt: Schema.Attribute.DateTime;
+    single_langs: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::single-lang.single-lang'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -882,6 +905,34 @@ export interface ApiRoutePoiRoutePoi extends Struct.CollectionTypeSchema {
     pois: Schema.Attribute.Relation<'oneToMany', 'api::poi.poi'>;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSingleLangSingleLang extends Struct.CollectionTypeSchema {
+  collectionName: 'single_langs';
+  info: {
+    displayName: 'single_lang';
+    pluralName: 'single-langs';
+    singularName: 'single-lang';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    data: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::single-lang.single-lang'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1484,10 +1535,13 @@ declare module '@strapi/strapi' {
       'api::footer.footer': ApiFooterFooter;
       'api::geo-location.geo-location': ApiGeoLocationGeoLocation;
       'api::i18n.i18n': ApiI18NI18N;
-      'api::poi-address.poi-address': ApiPoiAddressPoiAddress;
+      'api::multi-lang.multi-lang': ApiMultiLangMultiLang;
+      'api::poc-locale.poc-locale': ApiPocLocalePocLocale;
       'api::poi.poi': ApiPoiPoi;
+      'api::relation-multi-lang.relation-multi-lang': ApiRelationMultiLangRelationMultiLang;
       'api::relation-test.relation-test': ApiRelationTestRelationTest;
       'api::route-poi.route-poi': ApiRoutePoiRoutePoi;
+      'api::single-lang.single-lang': ApiSingleLangSingleLang;
       'api::store-hour.store-hour': ApiStoreHourStoreHour;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "relation_multi_langs",
+  "info": {
+    "singularName": "relation-multi-lang",
+    "pluralName": "relation-multi-langs",
+    "displayName": "relation_multi_lang"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "multi_langs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::multi-lang.multi-lang"
+    },
+    "single_langs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::single-lang.single-lang"
+    }
+  }
+}

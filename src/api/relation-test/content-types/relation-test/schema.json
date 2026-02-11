@@ -4,7 +4,7 @@
   "info": {
     "singularName": "relation-test",
     "pluralName": "relation-tests",
-    "displayName": "relation_test"
+    "displayName": "relation_single_lang"
   },
   "options": {
     "draftAndPublish": true
@@ -13,6 +13,16 @@
   "attributes": {
     "data": {
       "type": "string"
+    },
+    "single_langs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::single-lang.single-lang"
+    },
+    "multi_langs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::multi-lang.multi-lang"
     }
   }
 }

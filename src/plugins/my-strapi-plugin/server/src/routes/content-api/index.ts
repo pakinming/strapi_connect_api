@@ -10,5 +10,13 @@ export default () => ({
         policies: [],
       },
     },
+    {
+        method: 'POST',
+        path: '/create',
+        handler: 'controller.create',
+        config: {
+            policies: [],
+        },
+    },
   ],
 });

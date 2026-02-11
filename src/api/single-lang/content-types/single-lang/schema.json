@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "single_langs",
+  "info": {
+    "singularName": "single-lang",
+    "pluralName": "single-langs",
+    "displayName": "single_lang"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "data": {
+      "type": "string"
+    }
+  }
+}

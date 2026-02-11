@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "multi_langs",
+  "info": {
+    "singularName": "multi-lang",
+    "pluralName": "multi-langs",
+    "displayName": "multi_lang"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "data": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    }
+  }
+}

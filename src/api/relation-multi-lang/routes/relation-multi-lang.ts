@@ -1,0 +1,7 @@
+/**
+ * relation-multi-lang router
+ */
+
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreRouter('api::relation-multi-lang.relation-multi-lang');
