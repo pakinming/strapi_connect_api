@@ -1,6 +1,6 @@
 
 import type { StrapiApp } from '@strapi/strapi/admin';
-
+import AutoFillMultiLangs from './components/AutoFillMultiLangs';
 
 export default {
   config: {
@@ -38,5 +38,11 @@ export default {
   },
   bootstrap(app: StrapiApp) {
     console.log('[App] Bootstrap', app);
+
+    // Inject AutoFillMultiLangs component globally
+    app.getPlugin('content-manager')?.injectComponent('editView', 'right-links', {
+      name: 'AutoFillMultiLangs',
+      Component: AutoFillMultiLangs,
+    });
   },
 };

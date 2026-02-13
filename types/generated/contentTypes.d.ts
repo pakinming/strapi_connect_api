@@ -911,6 +911,80 @@ export interface ApiRoutePoiRoutePoi extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiSelectDefaultMultiLangSelectDefaultMultiLang
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'select_default_multi_langs';
+  info: {
+    displayName: 'select_default_multi_lang';
+    pluralName: 'select-default-multi-langs';
+    singularName: 'select-default-multi-lang';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::select-default-multi-lang.select-default-multi-lang'
+    >;
+    multi_langs: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::multi-lang.multi-lang'
+    >;
+    name: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSelectTagSelectTag extends Struct.CollectionTypeSchema {
+  collectionName: 'select_tags';
+  info: {
+    displayName: 'select_tag';
+    pluralName: 'select-tags';
+    singularName: 'select-tag';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::select-tag.select-tag'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    tags: Schema.Attribute.Relation<'oneToMany', 'api::tag.tag'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiSingleLangSingleLang extends Struct.CollectionTypeSchema {
   collectionName: 'single_langs';
   info: {
@@ -1015,6 +1089,40 @@ export interface ApiStoreHourStoreHour extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+  };
+}
+
+export interface ApiTagTag extends Struct.CollectionTypeSchema {
+  collectionName: 'tags';
+  info: {
+    displayName: 'tag';
+    pluralName: 'tags';
+    singularName: 'tag';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::tag.tag'>;
+    publishedAt: Schema.Attribute.DateTime;
+    tag_name: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -1541,8 +1649,11 @@ declare module '@strapi/strapi' {
       'api::relation-multi-lang.relation-multi-lang': ApiRelationMultiLangRelationMultiLang;
       'api::relation-test.relation-test': ApiRelationTestRelationTest;
       'api::route-poi.route-poi': ApiRoutePoiRoutePoi;
+      'api::select-default-multi-lang.select-default-multi-lang': ApiSelectDefaultMultiLangSelectDefaultMultiLang;
+      'api::select-tag.select-tag': ApiSelectTagSelectTag;
       'api::single-lang.single-lang': ApiSingleLangSingleLang;
       'api::store-hour.store-hour': ApiStoreHourStoreHour;
+      'api::tag.tag': ApiTagTag;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

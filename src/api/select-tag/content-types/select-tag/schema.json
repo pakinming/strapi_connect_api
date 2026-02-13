@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "select_tags",
+  "info": {
+    "singularName": "select-tag",
+    "pluralName": "select-tags",
+    "displayName": "select_tag"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "tags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tag.tag"
+    }
+  }
+}
